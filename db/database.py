@@ -1,8 +1,9 @@
-from sqlmodel import create_engine, SQLModel
-from models.models import BOMUpload, BOMEntry  # Явный импорт моделей
+from sqlmodel import create_engine, Session, SQLModel
+from config import settings
+from models.models import DemoRecord
 
-engine = create_engine("sqlite:///bom.db")
+engine = create_engine(settings.DB_URL)
 
 def init_db():
-    # Убедитесь, что модели импортированы до этой строки
+
     SQLModel.metadata.create_all(engine)

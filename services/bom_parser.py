@@ -19,5 +19,4 @@ def parse_altium_bom(file_path: str) -> List[Dict]:
             "quantity": row[3]
         })
 
-
     return bom_data

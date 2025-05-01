@@ -1,3 +1,5 @@
+#обработка запросов, не более
+
 from fastapi import Request, HTTPException, APIRouter, Depends
 from  fastapi.responses import RedirectResponse
 

@@ -3,12 +3,13 @@ from sqlalchemy import desc
 from typing import Optional
 import models
 
-def create_bom_entry(db: Session, entry: dict):
+def create_bom_entry(db: Session, entry: dict, upload_id: int):
     db_entry = models.BOMEntry(
         designator=entry["designator"],
-        component_type=entry["ad_class"],
+        component_type=entry["ad_class"],  # Исправлено с ad_class
         ad_bom=entry["ad_bom"],
-        quantity=entry["quantity"]
+        quantity=entry["quantity"],
+        upload_id=upload_id  # Добавлен upload_id
     )
     db.add(db_entry)
     db.commit()

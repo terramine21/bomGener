@@ -9,4 +9,4 @@ class BOMEntry(Base): # эдакая структура объекта в баз
     component_type = Column(String)  # "Резистор"
     ad_bom = Column(String)  # "RES 10k 0805"
     quantity = Column(Integer)
-    #upload_id = Column(Integer, ForeignKey("bom_uploads.id")) # id, номер загрузки
+    upload_id = Column(Integer, ForeignKey("bom_uploads.id")) # id, номер загрузки

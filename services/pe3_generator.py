@@ -1,31 +1,24 @@
 from openpyxl import Workbook
-from typing import List, Dict
+from io import BytesIO
 
-def generate_pe3(bom_data: List[Dict], output_path: str):
+
+def generate_pe3(bom_data: list) -> BytesIO:
     wb = Workbook()
     ws = wb.active
 
     # Заголовки по ГОСТ
     ws.append(["Поз. обозначение", "Наименование", "Кол.", "Примечание"])
 
-    # Группировка по типу компонента (AD_Class)
-    grouped = {}
-    for item in bom_data:
-        key = item["ad_class"]
-        if key not in grouped:
-            grouped[key] = []
-        grouped[key].append(item)
+    # Заполнение данными
+    for i, item in enumerate(bom_data, start=1):
+        ws.append([
+            f"{item.ad_class}{i}",
+            item.ad_bom,
+            item.quantity,
+            item.designator
+        ])
 
-    # Заполнение таблицы
-    pos = 1
-    for component_type, items in grouped.items():
-        for item in items:
-            ws.append([
-                f"{component_type}{pos}",
-                item["ad_bom"],
-                item["quantity"],
-                item["designator"]
-            ])
-            pos += 1
-
-    wb.save(output_path)
+    buffer = BytesIO()
+    wb.save(buffer)
+    buffer.seek(0)
+    return buffer

@@ -8,7 +8,5 @@ models.Base.metadata.create_all(bind=engine) # создаём все табли�
 
 app = FastAPI()
 
-
-app = FastAPI()
 app.include_router(url.router)
 

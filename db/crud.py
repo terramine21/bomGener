@@ -1,4 +1,6 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import desc
+from typing import Optional
 import models
 
 def create_bom_entry(db: Session, entry: dict):
@@ -12,3 +14,9 @@ def create_bom_entry(db: Session, entry: dict):
     db.commit()
     db.refresh(db_entry)
     return db_entry
+
+
+def get_last_bom_entry(db: Session) -> Optional[models.BOMEntry]:
+    return db.query(models.BOMEntry) \
+        .order_by(desc(models.BOMEntry.id)) \
+        .first()

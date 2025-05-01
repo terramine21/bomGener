@@ -6,6 +6,5 @@ class DemoRecordCreate(BaseModel):
 
 class DemoRecordRead(BaseModel):
     id: int
-    request_number: int
     mstr: str
     mint: int

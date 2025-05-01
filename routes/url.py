@@ -2,7 +2,6 @@ from fastapi import Depends, HTTPException, APIRouter
 from sqlmodel import Session, select
 from models.models import DemoRecord
 from schemas.schemas import DemoRecordCreate, DemoRecordRead
-from dependencies import get_request_counter
 from db.session import get_session
 
 router = APIRouter(prefix="/demo", tags=["Demo Records"])
@@ -11,10 +10,8 @@ router = APIRouter(prefix="/demo", tags=["Demo Records"])
 def create_record(
         record: DemoRecordCreate,
         session: Session = Depends(get_session),
-        request_number: int = Depends(get_request_counter)
 ):
     db_record = DemoRecord(
-        request_number=request_number,
         mstr=record.mstr,
         mint=record.mint
     )

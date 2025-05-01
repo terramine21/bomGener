@@ -1,12 +1,15 @@
 from fastapi import FastAPI
-
-import models
+from db.database import init_db
 from routes import url
-from db.database import engine
 
 
+from contextlib import asynccontextmanager
 
-models.Base.metadata.create_all(bind=engine) # создаём все таблицы в базе данных SQLite
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()
+    yield
+
 
 app = FastAPI()
 

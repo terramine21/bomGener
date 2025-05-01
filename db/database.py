@@ -1,12 +1,8 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlmodel import create_engine, SQLModel
+from models.models import BOMUpload, BOMEntry  # Явный импорт моделей
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./bom.db"
+engine = create_engine("sqlite:///bom.db")
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-Base = declarative_base()
+def init_db():
+    # Убедитесь, что модели импортированы до этой строки
+    SQLModel.metadata.create_all(engine)

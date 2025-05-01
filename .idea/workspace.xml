@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/db/session.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/genExel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bom.db" beforeDir="false" afterPath="$PROJECT_DIR$/bom.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug_pe3.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/debug_pe3.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bom.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/debug_pe3.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/schemas.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +73,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Yura\PycharmProjects\bomGener\modules" />
       <recent name="C:\Users\Yura\PycharmProjects\bomGener" />
       <recent name="C:\Users\Yura\PycharmProjects\bomGener\services" />
     </key>
@@ -245,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746118873390</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary=".">
+      <option name="closed" value="true" />
+      <created>1746125338902</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1746125338902</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -1,6 +1,4 @@
 #описание входных и выходных параметров(?)
-
-
 from pydantic import BaseModel
 
 class BOMEntryCreate(BaseModel):

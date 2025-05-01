@@ -1,7 +1,8 @@
-from sqlalchemy.orm import Session
+from sqlmodel import Session
 from sqlalchemy import desc
 from typing import Optional
-import models
+from models import models
+
 
 def create_bom_entry(db: Session, entry: dict, upload_id: int):
     db_entry = models.BOMEntry(

@@ -1,10 +1,11 @@
 #обработка запросов, не более
 
-from fastapi import FastAPI, UploadFile, File, Depends, APIRouter
+from fastapi import UploadFile, File, Depends, APIRouter
 from sqlalchemy.orm import Session
-from services import bom_parser, pe3_generator
+from services import bom_parser
 from db.database import SessionLocal
-import os
+from db import crud
+
 
 router = APIRouter()
 
@@ -17,25 +18,21 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/upload-bom/")
-async def upload_bom(
-        file: UploadFile = File(...),
+@router.post("/upload-bom/") #пока тупо загружаем файл и в ответ получаем путь к загруженному файлу
+async def upload_bom( # принимаем файл, и ??
+        mfile: UploadFile = File(...),
         db: Session = Depends(get_db)
 ):
     # Сохраняем файл временно
-    file_path = f"temp_{file.filename}"
+    file_path = f"temp_{mfile.filename}"
     with open(file_path, "wb") as buffer:
-        buffer.write(file.file.read())
-    return {"message": file.filename}
+        buffer.write(mfile.file.read())
 
     # Парсим BOM
-    # bom_data = bom_parser.parse_altium_bom(file_path)
 
-    # Генерируем ПЭ3
-    # pe3_path = "pe3_output.xlsx"
-    # pe3_generator.generate_pe3(bom_data, pe3_path)
-    #
-    # # Удаляем временный файл
-    # os.remove(file_path)
+    bom_data = bom_parser.parse_altium_bom(file_path)
+    # Добавляем данные в БД
+    for entry in bom_data:
+        crud.create_bom_entry(db, entry) #тут уже встроен db.commit и прочее
 
-    # return {"message": "ПЭ3 сгенерирован", "path": pe3_path}
+    return {"message": mfile.filename}

@@ -1,14 +1,14 @@
-from fastapi import FastAPI, UploadFile, File, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
-from sqlalchemy.orm import Session
-from . import models, schemas #, crud
-from db.database import SessionLocal, engine
-from .services import bom_parser, pe3_generator
-import os
+from fastapi import FastAPI
 
-models.Base.metadata.create_all(bind=engine)
+import models
+from routes import url
+from db.database import engine
+
+models.Base.metadata.create_all(bind=engine) # создаём все таблицы в базе данных SQLite
 
 app = FastAPI()
 
 
+app = FastAPI()
+app.include_router(url.router)
 

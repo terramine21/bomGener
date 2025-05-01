@@ -1,5 +1,5 @@
 from openpyxl import Workbook
-
+from typing import List, Dict
 
 def generate_pe3(bom_data: List[Dict], output_path: str):
     wb = Workbook()

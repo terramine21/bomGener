@@ -9,6 +9,8 @@ import models
 from db import crud
 import os
 
+from io import BytesIO
+
 
 router = APIRouter()
 

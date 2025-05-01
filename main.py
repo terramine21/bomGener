@@ -1,6 +1,7 @@
 #делаем фигню, что взамен перечня в эксель табличке выплёвывает спецификацию
+
 from fastapi import FastAPI
-from db_dataBase.dataBase import init_db
+#from db.dataBase import init_db
 from routes import url
 
 from contextlib import asynccontextmanager

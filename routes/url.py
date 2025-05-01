@@ -75,3 +75,4 @@ async def download_pe3(db: Session = Depends(get_db)):
     except Exception as e:
         print(f"Ошибка при генерации файла: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+

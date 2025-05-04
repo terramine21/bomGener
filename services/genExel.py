@@ -12,36 +12,83 @@ from typing import List
 import re
 
 
-def group_designators(designators: str) -> str:
-    if not designators.strip():  # если designator пуст, вернуть ""
-        return ''
+# Разделяем префикс и числа
+def split_item(item):
+    """
+    R1, R2, R3 -> R1-R3
+    Недоработка R1, R? -> R1
+    """
+    if not item:
+        return None, None
 
-    # разбиваем строку на компоненты (designators)
-    designators = sorted([d.strip() for d in designators.split(', ')])
-
-    ranges = []  # для хранения диапазонов
-    start_number = None
     prefix = ''
+    num_str = ''
+    for char in item:
+        if char.isalpha():
+            prefix += char
+        elif char.isdigit():
+            num_str += char
+        else:
+            # Если встретился небуквенный и нецифровой символ (например, '?'), пропускаем
+            pass
 
-    for component in designators:
-        new_prefix, number = component[0], int(component[1:])
-        if start_number is not None and prefix == new_prefix and number - 1 == start_number + len(
-                ranges) - 1:  # если можно продолжить группировку
-            continue
+    # Если нет числовой части, возвращаем None
+    num = int(num_str) if num_str else None
+    return prefix, num
 
-        # сохранить диапазон в строковом формате
-        if start_number is not None and len(ranges) > 0:
-            ranges.append('{}{}-{}'.format(prefix, start_number, number - 1))
 
-        # начинаем новую группу
-        start_number = number
-        prefix = new_prefix
-        ranges = []  # сброс диапазона
+def shorten_ranges(s):
+    if not s:
+        return ""
 
-    if start_number is not None:  # сохранить последний диапазон
-        ranges.append('{}{}-{}'.format(prefix, start_number, number))
+    items = [item.strip() for item in s.split(",")]
+    if not items:
+        return ""
 
-    return ', '.join(ranges)  # возвращаем все диапазона в строковом формате
+    # Проверяем, есть ли числовая часть хотя бы у одного элемента
+    has_numbers = any(split_item(item)[1] is not None for item in items)
+
+    if not has_numbers:
+        # Если ни у одного элемента нет числовой части, просто возвращаем исходную строку
+        return s
+
+    # Фильтруем элементы, оставляя только те, у которых есть числовая часть
+    valid_items = []
+    for item in items:
+        prefix, num = split_item(item)
+        if num is not None:
+            valid_items.append((prefix, num))
+
+    if not valid_items:
+        return ""
+
+    # Получаем префикс (предполагаем, что он одинаковый для всех элементов)
+    prefix = valid_items[0][0]
+    numbers = [num for _, num in valid_items]
+
+    ranges = []
+    start = numbers[0]
+    prev = start
+
+    for num in numbers[1:]:
+        if num == prev + 1:
+            prev = num
+        else:
+            if start == prev:
+                ranges.append(f"{prefix}{start}")
+            else:
+                ranges.append(f"{prefix}{start}-{prefix}{prev}")
+            start = num
+            prev = num
+
+    # Добавляем последний диапазон
+    if start == prev:
+        ranges.append(f"{prefix}{start}")
+    else:
+        ranges.append(f"{prefix}{start}-{prefix}{prev}")
+
+    return ", ".join(ranges)
+
 
 
 def generate_excel_for_upload(upload_id: int, session):
@@ -92,7 +139,7 @@ def generate_excel_for_upload(upload_id: int, session):
         # Данные
         for record in records:
             ws.append([
-                group_designators(record.designator),
+                shorten_ranges(record.designator),
                 f"{record.ad_class} {record.ad_bom} {record.ad_ss}".strip(),
                 record.quantity,
                 record.ad_note

@@ -1,10 +1,9 @@
 from fastapi import FastAPI
-from db.database import engine, init_db
+from db.database import init_db
 from contextlib import asynccontextmanager
 from routes import url
 
 # Счетчик запросов
-request_counter = 0
 
 
 @asynccontextmanager

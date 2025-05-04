@@ -1,37 +1,73 @@
-from fastapi import Depends, HTTPException, APIRouter
+from fastapi import Depends, HTTPException, APIRouter, UploadFile, File
 from sqlmodel import Session, select
-from models.models import DemoRecord
-from schemas.schemas import DemoRecordCreate, DemoRecordRead
+
+from models.models import DemoRecord, Upload
 from db.session import get_session
+from services.bom_parser import parse_uploaded_bom
+from services.genExel import generate_excel_for_upload
+from schemas.schemas import DemoRecordRead
 
-router = APIRouter(prefix="/demo", tags=["Demo Records"])
 
-@router.post("/", response_model=DemoRecordRead)
-def create_record(
-        record: DemoRecordCreate,
-        session: Session = Depends(get_session),
-):
-    db_record = DemoRecord(
-        mstr=record.mstr,
-        mint=record.mint
-    )
+router = APIRouter(prefix="/BOM", tags=["BOM Operations"])
 
-    session.add(db_record)
-    session.commit()
-    session.refresh(db_record)
-    return db_record
 
-@router.get("/{record_id}", response_model=DemoRecordRead)
-def read_record(
-        record_id: int,
+@router.post("/upload", response_model=list[dict])
+async def upload_bom_file(
+        file: UploadFile = File(...),
         session: Session = Depends(get_session)
 ):
-    record = session.get(DemoRecord, record_id)
-    if not record:
-        raise HTTPException(status_code=404, detail="Record not found")
-    return record
+    """
+    Загружает BOM-файл и сохраняет данные в базу данных.
+    Принимает:
+    - Excel-файл с перечнем компонентов
+    Возвращает:
+    - Список элементов
+    """
+    try:
+        bom_data = await parse_uploaded_bom(file)
 
-@router.get("/", response_model=list[DemoRecordRead])
-def read_all_records(session: Session = Depends(get_session)):
-    records = session.exec(select(DemoRecord)).all()
+        upload = Upload(filename=file.filename)
+        session.add(upload)
+        session.commit()
+        session.refresh(upload)
+
+        session.add_all([
+            DemoRecord(upload_id=upload.id, **item)
+            for item in bom_data
+        ])
+        session.commit()
+
+        return [{"upload_id": upload.id, **item} for item in bom_data]
+
+    except Exception as e:
+        session.rollback()
+        raise HTTPException(status_code=400, detail=f"Ошибка обработки файла: {str(e)}")
+
+# Добавим эндпоинты для получения данных по upload_id
+@router.get("/uploads/", response_model=list[int])
+def list_uploads(session: Session = Depends(get_session)):
+    uploads = session.exec(select(Upload.id)).all()
+    return uploads
+
+@router.get("/upload/{upload_id}", response_model=list[DemoRecordRead])
+def get_upload_records(
+    upload_id: int,
+    session: Session = Depends(get_session)
+):
+    records = session.exec(
+        select(DemoRecord)
+        .where(DemoRecord.upload_id == upload_id)
+    ).all()
+    if not records:
+        raise HTTPException(status_code=404, detail="Upload not found")
     return records
+
+@router.get("/download/{upload_id}")
+def download_upload_as_excel(
+    upload_id: int,
+    session: Session = Depends(get_session)
+):
+    """
+    Генерирует и возвращает Excel файл с данными загрузки
+    """
+    return generate_excel_for_upload(upload_id, session)

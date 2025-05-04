@@ -1,6 +1,6 @@
-from sqlmodel import SQLModel
+#from sqlmodel import SQLModel
 
 class Settings:
-    DB_URL: str = "sqlite:///demo.db"
+    DB_URL: str = "sqlite:///bom.db"
 
 settings = Settings()

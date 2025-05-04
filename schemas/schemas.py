@@ -1,10 +1,23 @@
 from pydantic import BaseModel
 
+class UploadRead(BaseModel):
+    id: int
+    filename: str
+
 class DemoRecordCreate(BaseModel):
-    mstr: str
-    mint: int
+    designator: str
+    ad_bom: str
+    ad_class: str
+    ad_note: str
+    ad_ss: str
+    quantity: int
 
 class DemoRecordRead(BaseModel):
-    id: int
-    mstr: str
-    mint: int
+    upload_id: int
+    id: int                 #id элемента внутри списка
+    designator: str
+    ad_bom: str
+    ad_class: str
+    ad_note: str
+    ad_ss: str
+    quantity: int

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Подготовка к корректной выгрузке" />
+    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Обновление Readme">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -371,7 +374,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746456937137</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="pylint">
+      <option name="closed" value="true" />
+      <created>1746457472007</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1746457472007</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Обновление Readme">
+      <option name="closed" value="true" />
+      <created>1746457654903</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1746457654903</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -397,6 +416,8 @@
     <MESSAGE value="Добавлены комментарии" />
     <MESSAGE value="Добавление зависимостей" />
     <MESSAGE value="Подготовка к корректной выгрузке" />
-    <option name="LAST_COMMIT_MESSAGE" value="Подготовка к корректной выгрузке" />
+    <MESSAGE value="pylint" />
+    <MESSAGE value="Обновление Readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновление Readme" />
   </component>
 </project>

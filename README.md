@@ -21,9 +21,12 @@
 
 ### Клонирование репозитория и запуск
 git clone https://github.com/your-repo/bom-management.git
+
 cd bom-management
+
 pip install -r requirements.txt
 
 uvicorn main:app
 
-#### Отчет pylint 8.58/10
+### Отчет pylint 8.58/10
+Из-за того, что pylit не игнорирует папки виртуального окружения и кэша была создана копия проекта внутри проекта с названием "bomGener_isolated"

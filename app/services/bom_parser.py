@@ -1,10 +1,10 @@
 import openpyxl # для работы с exel
-from fastapi import UploadFile, File
+from fastapi import UploadFile
 from typing import List, Dict
 from tempfile import NamedTemporaryFile
 import os
 
-from schemas.schemas import DemoRecordCreate
+from app.schemas.schemas import DemoRecordCreate
 
 async def parse_uploaded_bom(file: UploadFile) -> List[Dict]:
     """Парсит загруженный BOM-файл и возвращает данные"""

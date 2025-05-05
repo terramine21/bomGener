@@ -2,11 +2,16 @@ from fastapi import Depends, HTTPException, APIRouter, UploadFile, File, Form
 from pydantic import ValidationError
 from sqlmodel import Session, select
 from sqlalchemy import delete
-from models.models import DemoRecord, Upload
-from db.session import get_session
-from services.bom_parser import parse_uploaded_bom
-from services.genExel import generate_excel_for_upload
-from schemas.schemas import DemoRecordRead, UploadRead, DemoRecordUpdate
+
+from app.models import DemoRecord, Upload
+from app.db.session import get_session
+from app.services.bom_parser import parse_uploaded_bom
+from app.services.genExel import generate_excel_for_upload
+from app.schemas.schemas import DemoRecordRead, UploadRead, DemoRecordUpdate
+
+from auth.dependencies import get_current_user
+from auth.schemas import UserRead
+from auth.services import verify_token
 
 router = APIRouter(prefix="/BOM", tags=["BOM Operations"])
 
@@ -15,7 +20,8 @@ router = APIRouter(prefix="/BOM", tags=["BOM Operations"])
 async def upload_bom_file(
         file: UploadFile = File(...),
         project_name: str = Form(...),
-        session: Session = Depends(get_session)
+        session: Session = Depends(get_session),
+        current_user: UserRead = Depends(get_current_user)
 ):
     """
     Загружает BOM-файл и сохраняет данные в базу данных.
@@ -44,16 +50,20 @@ async def upload_bom_file(
         session.rollback()
         raise HTTPException(status_code=400, detail=f"Ошибка обработки файла: {str(e)}")
 
-# Добавим эндпоинты для получения данных по upload_id
+
 @router.get("/upload/list", response_model=list[UploadRead])
-def list_uploads(session: Session = Depends(get_session)):
+def list_uploads(
+    session: Session = Depends(get_session),
+    current_user: UserRead = Depends(get_current_user)
+):
     uploads = session.exec(select(Upload)).all()
     return uploads
 
 @router.get("/upload/{upload_id}", response_model=list[DemoRecordRead])
 def get_upload_records(
     upload_id: int,
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
+    current_user: UserRead = Depends(get_current_user)
 ):
     records = session.exec(
         select(DemoRecord).where(DemoRecord.upload_id == upload_id) #?????
@@ -65,7 +75,8 @@ def get_upload_records(
 @router.get("/download/{upload_id}")
 def download_upload_as_excel(
     upload_id: int,
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
+    current_user: UserRead = Depends(get_current_user)
 ):
     """
     Генерирует и возвращает Excel файл с данными загрузки
@@ -73,20 +84,19 @@ def download_upload_as_excel(
     return generate_excel_for_upload(upload_id, session)
 
 @router.delete("/upload/{upload_id}", status_code=204)
-def delete_upload(upload_id: int, session: Session = Depends(get_session)):
-    """
-    Удаляет загрузку и все связанные записи по upload_id
-    """
+def delete_upload(
+    upload_id: int,
+    session: Session = Depends(get_session),
+    current_user: UserRead = Depends(get_current_user)
+):
     upload = session.get(Upload, upload_id)
     if not upload:
         raise HTTPException(status_code=404, detail="Загрузка не найдена")
 
-    # Удаляем связанные DemoRecord через SQLAlchemy-style delete
     session.exec(
-        delete(DemoRecord).where(DemoRecord.upload_id == upload_id) #?????
+        delete(DemoRecord).where(DemoRecord.upload_id == upload_id)
     )
 
-    # Удаляем саму загрузку
     session.delete(upload)
     session.commit()
 
@@ -97,7 +107,8 @@ def update_demo_record(
     upload_id: int,
     record_id: int,
     record_update: DemoRecordUpdate,
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
+    current_user: UserRead = Depends(get_current_user)
 ):
     """
     Обновляет запись DemoRecord по её record_id и upload_id

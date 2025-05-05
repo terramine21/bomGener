@@ -1,4 +1,4 @@
-from db.database import engine
+from app.db.database import engine
 from sqlmodel import Session
 
 def get_session():

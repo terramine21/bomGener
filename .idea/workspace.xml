@@ -4,32 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Сейв перед добавлением логина">
-      <change afterPath="$PROJECT_DIR$/auth/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/dependencies.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/schemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/services.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/url.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Добавлена регистрация, получение токена и получение доступа к функциям по токену">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/crud.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/session.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/db/session.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/url.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/bom_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/bom_parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/genExel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/genExel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/pe3_generator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/bom_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/bom_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/genExel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/gen_exel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/dependencies.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/dependencies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/url.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +70,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -332,7 +320,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746437093570</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Добавлена регистрация, получение токена и получение доступа к функциям по токену">
+      <option name="closed" value="true" />
+      <created>1746444518569</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1746444518570</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -354,6 +350,7 @@
     <MESSAGE value="." />
     <MESSAGE value="Правка генерации файла" />
     <MESSAGE value="Сейв перед добавлением логина" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сейв перед добавлением логина" />
+    <MESSAGE value="Добавлена регистрация, получение токена и получение доступа к функциям по токену" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена регистрация, получение токена и получение доступа к функциям по токену" />
   </component>
 </project>

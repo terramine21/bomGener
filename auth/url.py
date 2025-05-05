@@ -1,16 +1,20 @@
+"""Ссылки для аутентификации и регистрации пользователей."""
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlmodel import select
 
 from app.db.session import get_session
-from .schemas import UserCreate, UserLogin, Token, UserRead
-from .models import User
-from .services import hash_password, verify_password, create_access_token
+from auth.schemas import UserCreate, UserLogin, Token, UserRead
+from auth.models import User
+from auth.services import hash_password, verify_password, create_access_token
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 @router.post("/register", response_model=UserRead)
 def register(user_create: UserCreate, session: Session = Depends(get_session)):
+    """
+    Регистрация нового пользователя.
+    """
     user_exists = session.exec(select(User).where(User.username == user_create.username)).first()
     if user_exists:
         raise HTTPException(status_code=400, detail="Username already registered")
@@ -22,6 +26,7 @@ def register(user_create: UserCreate, session: Session = Depends(get_session)):
 
 @router.post("/login", response_model=Token)
 def login(user_login: UserLogin, session: Session = Depends(get_session)):
+    """Получение JWT токена пользователя"""
     user = session.exec(select(User).where(User.username == user_login.username)).first()
     if not user or not verify_password(user_login.password, user.password_hash):
         raise HTTPException(status_code=401, detail="Invalid username or password")

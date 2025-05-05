@@ -1,3 +1,5 @@
+"""Модуль для обработки операций с BOM, таких как: загрузка, список и удаление записей."""
+
 from fastapi import Depends, HTTPException, APIRouter, UploadFile, File, Form
 from pydantic import ValidationError
 from sqlmodel import Session, select
@@ -6,12 +8,11 @@ from sqlalchemy import delete
 from app.models import DemoRecord, Upload
 from app.db.session import get_session
 from app.services.bom_parser import parse_uploaded_bom
-from app.services.genExel import generate_excel_for_upload
+from app.services.gen_exel import generate_excel_for_upload
 from app.schemas.schemas import DemoRecordRead, UploadRead, DemoRecordUpdate
 
 from auth.dependencies import get_current_user
 from auth.schemas import UserRead
-from auth.services import verify_token
 
 router = APIRouter(prefix="/BOM", tags=["BOM Operations"])
 
@@ -56,6 +57,9 @@ def list_uploads(
     session: Session = Depends(get_session),
     current_user: UserRead = Depends(get_current_user)
 ):
+    """
+    Получает список всех загрузок.
+    """
     uploads = session.exec(select(Upload)).all()
     return uploads
 
@@ -65,6 +69,9 @@ def get_upload_records(
     session: Session = Depends(get_session),
     current_user: UserRead = Depends(get_current_user)
 ):
+    """
+    Получает записи для заданной загрузки.
+    """
     records = session.exec(
         select(DemoRecord).where(DemoRecord.upload_id == upload_id) #?????
     ).all()
@@ -89,6 +96,9 @@ def delete_upload(
     session: Session = Depends(get_session),
     current_user: UserRead = Depends(get_current_user)
 ):
+    """
+    Удаляет загрузку по указанному ID.
+    """
     upload = session.get(Upload, upload_id)
     if not upload:
         raise HTTPException(status_code=404, detail="Загрузка не найдена")

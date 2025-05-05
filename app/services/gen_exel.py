@@ -1,21 +1,21 @@
-CM_TO_POINTS = 28.35  # 1 см ≈ 28.35 точек
+"""Модуль генерации Excel-файлов на основе записей BOM из базы данных."""
 
-import openpyxl
-from openpyxl.styles import Font, Alignment
 from datetime import datetime
-from sqlmodel import select
-from app.models import DemoRecord, Upload
-from fastapi import HTTPException
-from fastapi.responses import FileResponse
 from tempfile import NamedTemporaryFile
 
+import openpyxl
+from fastapi import HTTPException
+from fastapi.responses import FileResponse
+from openpyxl.styles import Font, Alignment
+from sqlmodel import select
+
+from app.models import DemoRecord, Upload
+
+CM_TO_POINTS = 28.35  # 1 см ≈ 28.35 точек
 
 # Разделяем префикс и числа
 def split_item(item):
-    """
-    R1, R2, R3 -> R1-R3
-    Недоработка R1, R? -> R1
-    """
+    """Разделяет префикс и числовую часть: R12 -> ('R', 12))."""
     if not item:
         return None, None
 
@@ -36,6 +36,11 @@ def split_item(item):
 
 
 def shorten_ranges(s):
+    """
+    Сокращает список компонентов с одинаковым префиксом в диапазоны.
+    Пример:
+        "R1, R2, R3, R5" -> "R1-R3, R5"
+    """
     if not s:
         return ""
 
@@ -176,5 +181,3 @@ def generate_excel_for_upload(upload_id: int, session):
     finally:
         # Удаление временного файла будет выполнено FastAPI автоматически после отправки
         pass
-
-

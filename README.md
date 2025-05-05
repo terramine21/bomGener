@@ -19,10 +19,11 @@
 | DELETE | `/upload/{upload_id}`         | Удалить лист               |
 | PATCH  | `/upload/{upload_id}/record/{record_id}` | Обновить параметры позиции |
 
-### Клонирование репозитория
+### Клонирование репозитория и запуск
 git clone https://github.com/your-repo/bom-management.git
 cd bom-management
 pip install -r requirements.txt
 
-### Запуск
 uvicorn main:app
+
+#### Отчет pylint 8.58/10

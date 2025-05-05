@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Добавлены комментарии">
-      <change beforePath="$PROJECT_DIR$/.pylint.rc" beforeDir="false" afterPath="$PROJECT_DIR$/forPylint/.pylint.rc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint_report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/forPylint/pylint_report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/gen_exel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/gen_exel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bom.db" beforeDir="false" afterPath="$PROJECT_DIR$/bom.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +66,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Yura\PycharmProjects\bomGener\forPylint" />
       <recent name="C:\Users\Yura\PycharmProjects\bomGener\app" />
       <recent name="C:\Users\Yura\PycharmProjects\bomGener\modules" />
       <recent name="C:\Users\Yura\PycharmProjects\bomGener" />
@@ -325,7 +328,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746451866059</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Добавлены комментарии">
+      <option name="closed" value="true" />
+      <created>1746451978599</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1746451978599</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

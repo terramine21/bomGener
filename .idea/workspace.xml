@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/.idea/bomGener.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/schemas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/genExel.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/genExel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -1,15 +1,13 @@
 CM_TO_POINTS = 28.35  # 1 см ≈ 28.35 точек
 
 import openpyxl
-from openpyxl.styles import Font
+from openpyxl.styles import Font, Alignment
 from datetime import datetime
 from sqlmodel import select
 from models.models import DemoRecord, Upload
 from fastapi import HTTPException
 from fastapi.responses import FileResponse
 from tempfile import NamedTemporaryFile
-from typing import List
-import re
 
 
 # Разделяем префикс и числа
@@ -49,7 +47,7 @@ def shorten_ranges(s):
     has_numbers = any(split_item(item)[1] is not None for item in items)
 
     if not has_numbers:
-        # Если ни у одного элемента нет числовой части, просто возвращаем исходную строку
+        # Если ни у одного элемента нет, просто возвращаем исходную строку
         return s
 
     # Фильтруем элементы, оставляя только те, у которых есть числовая часть
@@ -90,7 +88,6 @@ def shorten_ranges(s):
     return ", ".join(ranges)
 
 
-
 def generate_excel_for_upload(upload_id: int, session):
     """
     Генерирует Excel файл для указанного upload_id и возвращает FileResponse
@@ -114,8 +111,8 @@ def generate_excel_for_upload(upload_id: int, session):
         wb = openpyxl.Workbook()
         ws = wb.active
         ws.title = "BOM Data"
-        default_font = Font(name='GOST Type A', size=14)
-        wb._fonts = [default_font]
+        default_font = Font(name='GOST Type A', size=12, italic=True)
+        align_center = Alignment(horizontal="center", vertical="center")
 
         # Заголовки
         headers = [
@@ -126,6 +123,10 @@ def generate_excel_for_upload(upload_id: int, session):
         ]
         ws.append(headers)
 
+        for cell in ws[1]:
+            cell.font = default_font
+            cell.alignment = align_center  # выравнивание заголовков по центру
+
         column_widths = {
             'A': 2.0 * CM_TO_POINTS,    # 2.0 см
             'B': 11.0 * CM_TO_POINTS,   # 11.0 см
@@ -135,15 +136,22 @@ def generate_excel_for_upload(upload_id: int, session):
         for col_letter, width in column_widths.items():
             ws.column_dimensions[col_letter].width = width / 7
 
-
         # Данные
         for record in records:
-            ws.append([
+            row = [
                 shorten_ranges(record.designator),
                 f"{record.ad_class} {record.ad_bom} {record.ad_ss}".strip(),
                 record.quantity,
                 record.ad_note
-            ])
+            ]
+            ws.append(row)
+
+            current_row = ws.max_row
+            for col_idx, cell in enumerate(ws[current_row], start=1):
+                cell.font = default_font
+                # Столбец A (1) и C (3) — выравнивание по центру
+                if col_idx in (1, 3):
+                    cell.alignment = align_center
 
         # Создаем временный файл (кросс-платформенный способ)
         with NamedTemporaryFile(delete=False, suffix=".xlsx") as temp_file:

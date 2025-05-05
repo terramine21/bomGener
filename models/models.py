@@ -5,6 +5,7 @@ class Upload(SQLModel, table=True):
     __tablename__ = "upload"
 
     id: Optional[int] = Field(default=None, primary_key=True)
+    project_name: str
     filename: str
     records: List["DemoRecord"] = Relationship(back_populates="upload")
 

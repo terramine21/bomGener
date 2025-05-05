@@ -1,12 +1,11 @@
-from fastapi import Depends, HTTPException, APIRouter, UploadFile, File
+from fastapi import Depends, HTTPException, APIRouter, UploadFile, File, Form
 from sqlmodel import Session, select
 
 from models.models import DemoRecord, Upload
 from db.session import get_session
 from services.bom_parser import parse_uploaded_bom
 from services.genExel import generate_excel_for_upload
-from schemas.schemas import DemoRecordRead
-
+from schemas.schemas import DemoRecordRead, UploadRead
 
 router = APIRouter(prefix="/BOM", tags=["BOM Operations"])
 
@@ -14,6 +13,7 @@ router = APIRouter(prefix="/BOM", tags=["BOM Operations"])
 @router.post("/upload", response_model=list[dict])
 async def upload_bom_file(
         file: UploadFile = File(...),
+        project_name: str = Form(...),
         session: Session = Depends(get_session)
 ):
     """
@@ -26,7 +26,7 @@ async def upload_bom_file(
     try:
         bom_data = await parse_uploaded_bom(file)
 
-        upload = Upload(filename=file.filename)
+        upload = Upload(filename=file.filename, project_name=project_name)
         session.add(upload)
         session.commit()
         session.refresh(upload)
@@ -44,9 +44,9 @@ async def upload_bom_file(
         raise HTTPException(status_code=400, detail=f"Ошибка обработки файла: {str(e)}")
 
 # Добавим эндпоинты для получения данных по upload_id
-@router.get("/uploads/", response_model=list[int])
+@router.get("/uploads/list", response_model=list[UploadRead])
 def list_uploads(session: Session = Depends(get_session)):
-    uploads = session.exec(select(Upload.id)).all()
+    uploads = session.exec(select(Upload)).all()
     return uploads
 
 @router.get("/upload/{upload_id}", response_model=list[DemoRecordRead])

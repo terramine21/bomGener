@@ -3,6 +3,7 @@ from pydantic import BaseModel
 class UploadRead(BaseModel):
     id: int
     filename: str
+    project_name: str
 
 class DemoRecordCreate(BaseModel):
     designator: str

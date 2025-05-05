@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Добавление зависимостей">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/gen_exel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/gen_exel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bom.db" beforeDir="false" afterPath="$PROJECT_DIR$/bom.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Подготовка к корректной выгрузке" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -356,7 +347,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746455707018</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Подготовка к корректной выгрузке">
+      <option name="closed" value="true" />
+      <created>1746456764159</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1746456764159</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Подготовка к корректной выгрузке">
+      <option name="closed" value="true" />
+      <created>1746456807489</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1746456807489</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -381,6 +388,7 @@
     <MESSAGE value="Добавлена регистрация, получение токена и получение доступа к функциям по токену" />
     <MESSAGE value="Добавлены комментарии" />
     <MESSAGE value="Добавление зависимостей" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавление зависимостей" />
+    <MESSAGE value="Подготовка к корректной выгрузке" />
+    <option name="LAST_COMMIT_MESSAGE" value="Подготовка к корректной выгрузке" />
   </component>
 </project>

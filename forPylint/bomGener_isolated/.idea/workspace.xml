@@ -4,9 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Добавлены комментарии">
-      <change beforePath="$PROJECT_DIR$/.pylint.rc" beforeDir="false" afterPath="$PROJECT_DIR$/forPylint/.pylint.rc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint_report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/forPylint/pylint_report.txt" afterDir="false" />
+    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Добавлена регистрация, получение токена и получение доступа к функциям по токену">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/bom_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/bom_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/genExel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/gen_exel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/dependencies.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/dependencies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/url.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,15 +328,7 @@
       <option name="project" value="LOCAL" />
       <updated>1746444518570</updated>
     </task>
-    <task id="LOCAL-00030" summary="Добавлены комментарии">
-      <option name="closed" value="true" />
-      <created>1746451866059</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1746451866059</updated>
-    </task>
-    <option name="localTasksCounter" value="31" />
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -348,7 +351,6 @@
     <MESSAGE value="Правка генерации файла" />
     <MESSAGE value="Сейв перед добавлением логина" />
     <MESSAGE value="Добавлена регистрация, получение токена и получение доступа к функциям по токену" />
-    <MESSAGE value="Добавлены комментарии" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены комментарии" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена регистрация, получение токена и получение доступа к функциям по токену" />
   </component>
 </project>

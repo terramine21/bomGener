@@ -172,3 +172,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# .gitignore
+.env
+*.db
+__pycache__

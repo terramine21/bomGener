@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Добавлены комментарии">
+    <list default="true" id="46744146-47cf-4615-a9db-3f7c30334cf0" name="Changes" comment="Добавление зависимостей">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/gen_exel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/gen_exel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/auth/services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bom.db" beforeDir="false" afterPath="$PROJECT_DIR$/bom.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -336,7 +340,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746451978599</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Добавление зависимостей">
+      <option name="closed" value="true" />
+      <created>1746455688279</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1746455688279</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Добавление зависимостей">
+      <option name="closed" value="true" />
+      <created>1746455707018</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1746455707018</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -360,6 +380,7 @@
     <MESSAGE value="Сейв перед добавлением логина" />
     <MESSAGE value="Добавлена регистрация, получение токена и получение доступа к функциям по токену" />
     <MESSAGE value="Добавлены комментарии" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены комментарии" />
+    <MESSAGE value="Добавление зависимостей" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавление зависимостей" />
   </component>
 </project>

@@ -22,12 +22,18 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Сравнивает обычный и хешированный пароли."""
     return pwd_context.verify(plain_password, hashed_password)
 
-def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+def create_access_token(data: dict):
     """Создает JWT токен с заданным сроком действия."""
     to_encode = data.copy()
-    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    expire = datetime.utcnow() + timedelta(
+        minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
+    )
     to_encode.update({"exp": expire})
-    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return jwt.encode(
+        to_encode,
+        settings.SECRET_KEY.get_secret_value(),  # Достаём значение SecretStr
+        algorithm=settings.ALGORITHM
+    )
 
 
 def verify_token(token: str) -> dict:
@@ -38,12 +44,15 @@ def verify_token(token: str) -> dict:
     Генерирует HTTPException в противном случае.
     """
     try:
-        # Переданный токен не пустой и является строкой
         if not token:
             raise HTTPException(status_code=401, detail="Token is missing")
 
-        # Декодируем токен с использованием секретного ключа и алгоритма
-        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        # Используем get_secret_value() для преобразования SecretStr в строку
+        decoded_token = jwt.decode(
+            token,
+            settings.SECRET_KEY.get_secret_value(),  # <-- Вот это исправление
+            algorithms=[settings.ALGORITHM]
+        )
 
         exp = decoded_token.get("exp")
         if exp and datetime.utcfromtimestamp(exp) < datetime.utcnow():
@@ -52,5 +61,5 @@ def verify_token(token: str) -> dict:
         return decoded_token
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
-    except jwt.PyJWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
+    except jwt.PyJWTError as e:
+        raise HTTPException(status_code=401, detail=f"Invalid token: {str(e)}")

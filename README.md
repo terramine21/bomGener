@@ -22,8 +22,8 @@
 ### Клонирование репозитория и запуск
 
 ```
-git clone https://github.com/your-repo/bom-management.git
-cd bom-management
+git clone https://github.com/terramine21/bomGener
+cd bomGener
 
 pip install -r requirements.txt
 
